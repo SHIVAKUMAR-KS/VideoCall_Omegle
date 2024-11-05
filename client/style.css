@@ -1,0 +1,110 @@
+body {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+}
+
+html {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='2000' height='560' preserveAspectRatio='none' viewBox='0 0 2000 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1085%26quot%3b)' fill='none'%3e%3cpath d='M 0%2c196 C 133.4%2c247.6 400.2%2c438.8 667%2c454 C 933.8%2c469.2 1067.4%2c264 1334%2c272 C 1600.6%2c280 1866.8%2c449.6 2000%2c494L2000 560L0 560z' fill='rgba(156%2c 99%2c 255%2c 1)'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1085'%3e%3crect width='2000' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3c/defs%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: 0 calc(100vh - 400px);
+  animation: change 3s ease-in-out alternate-reverse infinite;
+}
+
+@keyframes change {
+  to {
+    background-position: -100px calc(100vh - 380px);
+  }
+
+  from {
+    background-position: 0 calc(100vh - 450px);
+  }
+}
+
+
+.wrapper {
+  display: flex;
+  margin-top: 70px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+img {
+  width: 550px;  /* Adjust the logo size */
+  height: auto;
+  margin-bottom: 40px;
+  border-radius: 10px;
+  animation: logoPulse 2s ease-in-out infinite; /* Added pulse animation */
+}
+@keyframes logoPulse {
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(5deg);
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+  }
+}
+
+button {
+  padding: 18px 35px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(145deg, #ff6b6b, #ff9f40); /* Gradient effect */
+  border: none;
+  border-radius: 25px;
+  outline: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  min-width: 250px;
+  text-transform: uppercase; /* Makes button text bold */
+  letter-spacing: 1px; /* Spacing between letters */
+  text-align: center;
+}
+
+/* Hover effect for the button */
+button:hover {
+  background: linear-gradient(145deg, #ff9f40, #ff6b6b); /* Reverse gradient */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px); /* Floating effect */
+  transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Active state for the button */
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Fade-in effect for elements */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 768px) {
+  body {
+    background: linear-gradient(135deg, #f1c6f4, #f7b2a0); /* Gradient stays responsive */
+  }
+
+  img {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    font-size: 18px;
+    padding: 15px 30px;
+    min-width: 220px;
+  }
+}
