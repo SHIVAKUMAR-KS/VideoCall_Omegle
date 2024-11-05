@@ -1,4 +1,4 @@
-<h1 align = "center"> 
+<!-- <h1 align = "center"> 
 
 ![iggle](https://github.com/amitanshusahu/Omegle-fullstack/assets/83657737/fdeae2a5-a5aa-456a-9160-aeb87e265e8c)
 
@@ -38,4 +38,4 @@ cd ../server && npm start
 
 ---
 
-<h1 align="center"> Star the Repo ⭐ </h1>
+<h1 align="center"> Star the Repo ⭐ </h1> -->
