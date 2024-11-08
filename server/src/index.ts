@@ -8,6 +8,7 @@ const io = new Server(server, { cors: { origin: '*' } });
 import { handelStart, handelDisconnect, getType } from './lib';
 import { GetTypesResult, room } from './types';
 
+
 let online: number = 0;
 let roomArr: Array<room> = [];
 
