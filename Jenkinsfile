@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://your-repo-url.git'
+                git 'https://github.com/SHIVAKUMAR-KS/VideoCall_Omegle.git'
             }
         }
         stage('Build Docker Images') {
