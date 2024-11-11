@@ -1,13 +1,23 @@
-# docker-compose.yml
 version: '3'
 services:
-  frontend:
-    build: ./client
-    ports:
-      - "8080:80"
   backend:
-    build: ./server
+    image: omegle-clone-backend
+    build:
+      context: ./server
     ports:
       - "3000:3000"
-    depends_on:
-      - frontend
+    networks:
+      - app-network
+
+  frontend:
+    image: omegle-clone-frontend
+    build:
+      context: ./client
+    ports:
+      - "8080:80"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
