@@ -1,23 +1,19 @@
-version: '3'
+version: '3.8'
 services:
-  backend:
-    image: omegle-clone-backend
-    build:
-      context: ./server
-    ports:
-      - "3000:3000"
-    networks:
-      - app-network
-
   frontend:
-    image: omegle-clone-frontend
     build:
       context: ./client
+      dockerfile: Dockerfile
     ports:
-      - "8080:80"
-    networks:
-      - app-network
+      - "3000:3000"
+    depends_on:
+      - backend
 
-networks:
-  app-network:
-    driver: bridge
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    environment:
+      - NODE_ENV=production
