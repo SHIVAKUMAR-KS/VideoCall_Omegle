@@ -1,5 +1,10 @@
 pipeline {
     agent any
+    
+    environment {
+        DOCKER_COMPOSE_PATH = 'docker-compose.yml'
+    }
+
     stages {
         stage('Clone Repository') {
             steps {
@@ -9,22 +14,23 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 script {
-                    sh 'docker-compose -f docker-compose.yml build'
+                    sh "docker-compose -f ${DOCKER_COMPOSE_PATH} build"
                 }
             }
         }
         stage('Run Containers') {
             steps {
                 script {
-                    sh 'docker-compose -f docker-compose.yml up -d'
+                    sh "docker-compose -f ${DOCKER_COMPOSE_PATH} up -d"
                 }
             }
         }
     }
+    
     post {
         always {
-            echo 'Cleaning up...'
-            sh 'docker-compose -f docker-compose.yml down'
+            echo 'Cleaning up Docker containers...'
+            sh "docker-compose -f ${DOCKER_COMPOSE_PATH} down"
         }
     }
 }
