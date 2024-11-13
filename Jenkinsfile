@@ -1,36 +1,27 @@
 pipeline {
     agent any
-    
-    environment {
-        DOCKER_COMPOSE_PATH = 'docker-compose.yml'
-    }
-
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/SHIVAKUMAR-KS/VideoCall_Omegle.git'
+                checkout scm
             }
         }
         stage('Build Docker Images') {
             steps {
-                script {
-                    sh "docker-compose -f ${DOCKER_COMPOSE_PATH} build"
-                }
+                sh 'docker-compose build'
             }
         }
-        stage('Run Containers') {
+        stage('Run Tests') {
             steps {
-                script {
-                    sh "docker-compose -f ${DOCKER_COMPOSE_PATH} up -d"
-                }
+                sh 'docker-compose up -d'
+                // Add any specific test commands here
             }
         }
-    }
-    
-    post {
-        always {
-            echo 'Cleaning up Docker containers...'
-            sh "docker-compose -f ${DOCKER_COMPOSE_PATH} down"
+        stage('Deploy') {
+            steps {
+                sh 'docker-compose down'
+                sh 'docker-compose up -d'
+            }
         }
     }
 }
