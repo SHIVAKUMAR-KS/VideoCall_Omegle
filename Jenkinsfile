@@ -9,24 +9,24 @@ pipeline {
         stage('Build Docker Images') {
             steps {
                 script {
-                    def command = isUnix() ? 'docker-compose build' : 'cmd /c "docker-compose build"'
-                    sh command
+                    def command = 'cmd /c "docker-compose build"'
+                    bat command // Use 'bat' for Windows
                 }
             }
         }
         stage('Run Tests') {
             steps {
                 script {
-                    def command = isUnix() ? 'docker-compose up -d' : 'cmd /c "docker-compose up -d"'
-                    sh command
+                    def command = 'cmd /c "docker-compose up -d"'
+                    bat command
                 }
             }
         }
         stage('Deploy') {
             steps {
                 script {
-                    def command = isUnix() ? 'docker-compose down && docker-compose up -d' : 'cmd /c "docker-compose down && docker-compose up -d"'
-                    sh command
+                    def command = 'cmd /c "docker-compose down && docker-compose up -d"'
+                    bat command
                 }
             }
         }
