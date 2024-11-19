@@ -8,9 +8,6 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
-# Build the React application
-RUN npm run build
-
-# Serve the application on port 3000
-EXPOSE 3000
-CMD ["npm","run","dev"]
+# Start the development server on port 5173
+EXPOSE 5173
+CMD ["npm", "run", "dev"]

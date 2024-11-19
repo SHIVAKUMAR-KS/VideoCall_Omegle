@@ -2,21 +2,21 @@ version: '3'
 services:
   backend:
     build:
-      context: ./server  # Path to the backend directory
-      dockerfile: Dockerfile  # Optional if the file is named Dockerfile
+      context: C:/ProgramData/Jenkins/.jenkins/workspace/Omegle_Pipeline/server
+      dockerfile: Dockerfile
     image: omegle-clone-backend
     ports:
-      - "8000:8000"  # Backend exposed on port 8000
+      - "8000:8000"  # Exposing the backend API on port 8000 on the host and container
     networks:
       - app-network
 
   frontend:
     build:
-      context: ./client  # Path to the frontend directory
-      dockerfile: Dockerfile  # Optional if the file is named Dockerfile
+      context: C:/ProgramData/Jenkins/.jenkins/workspace/Omegle_Pipeline/client
+      dockerfile: Dockerfile
     image: omegle-clone-frontend
     ports:
-      - "5173:5173"  # Frontend exposed on port 5173
+      - "5173:5173"  # Exposing the frontend on port 5173 on the host and container
     networks:
       - app-network
 

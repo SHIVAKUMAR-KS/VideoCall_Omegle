@@ -7,6 +7,6 @@ COPY package*.json ./
 RUN npm install
 COPY . .
 
-# Run the Node.js application on port 5000
-EXPOSE 5000
+# Start the Node.js application on port 8000
+EXPOSE 8000
 CMD ["npm", "start"]
