@@ -8,19 +8,26 @@ pipeline {
         }
         stage('Build Docker Images') {
             steps {
-                sh 'docker-compose build'
+                script {
+                    def command = isUnix() ? 'docker-compose build' : 'cmd /c "docker-compose build"'
+                    sh command
+                }
             }
         }
         stage('Run Tests') {
             steps {
-                sh 'docker-compose up -d'
-                // Add any specific test commands here
+                script {
+                    def command = isUnix() ? 'docker-compose up -d' : 'cmd /c "docker-compose up -d"'
+                    sh command
+                }
             }
         }
         stage('Deploy') {
             steps {
-                sh 'docker-compose down'
-                sh 'docker-compose up -d'
+                script {
+                    def command = isUnix() ? 'docker-compose down && docker-compose up -d' : 'cmd /c "docker-compose down && docker-compose up -d"'
+                    sh command
+                }
             }
         }
     }
