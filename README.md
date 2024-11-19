@@ -39,3 +39,7 @@ cd ../server && npm start
 ---
 
 <h1 align="center"> Star the Repo ⭐ </h1> -->
+
+
+docker-compose down
+docker-compose up --build
