@@ -27,13 +27,7 @@ io.on('connection', (socket) => {
     io.emit('online', online);
     handelDisconnect(socket.id, roomArr, io);
   });
-
-
-
-
-  /// ------- logic for webrtc connection ------
-
-  // on ice send
+  /// ------- logic for webrtc connection on ice stand ------
   socket.on('ice:send', ({ candidate }) => {
     let type: GetTypesResult = getType(socket.id, roomArr);
     if (type) {
@@ -47,7 +41,6 @@ io.on('connection', (socket) => {
       }
     }
   });
-
   // on sdp send
   socket.on('sdp:send', ({ sdp }) => {
     let type = getType(socket.id, roomArr);
@@ -62,9 +55,6 @@ io.on('connection', (socket) => {
       }
     }
   })
-
-
-
   /// --------- Messages -----------
 
   // send message

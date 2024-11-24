@@ -51,3 +51,55 @@ pipeline {
         }
     }
 }
+
+pipeline {
+    agent any
+    environment {
+        DOCKER_COMPOSE = 'docker-compose'
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/SHIVAKUMAR-KS/VideoCall_Omegle.git'
+            }
+        }
+        stage('Build') {
+            steps {
+                script {
+                    // Use docker-compose without nohup (background process)
+                    sh '''
+                        docker-compose -f docker-compose.yml build
+                    '''
+                }
+            }
+        }
+        stage('Test') {
+            steps {
+                script {
+                    // Bring up containers and run tests
+                    sh '''
+                        docker-compose up -d
+                        # Run your tests here
+                        docker-compose down
+                    '''
+                }
+            }
+        }
+        stage('Deploy') {
+            steps {
+                script {
+                    // Deploy containers
+                    sh '''
+                        docker-compose up -d
+                    '''
+                }
+            }
+        }
+    }
+    post {
+        always {
+            // Clean up Docker containers after each run
+            sh 'docker-compose down || true'
+        }
+    }
+}
