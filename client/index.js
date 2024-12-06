@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
-// Global State
+// Global State type and added to the app
 let peer;
 const myVideo = document.getElementById('my-video');
 const strangerVideo = document.getElementById('video');
